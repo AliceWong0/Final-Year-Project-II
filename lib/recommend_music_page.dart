@@ -8,7 +8,7 @@ class RecommendMusicPage extends StatelessWidget {
 
   const RecommendMusicPage({Key? key, required this.emotion}) : super(key: key);
 
-  // 根据情绪返回主题色
+
   Color _emotionColor() {
     switch (emotion.toLowerCase()) {
       case 'happy':
@@ -30,13 +30,13 @@ class RecommendMusicPage extends StatelessWidget {
     }
   }
 
-  // 不显示 mood 按钮的情绪
+
   bool _noButtonEmotion(String e) {
     final emo = e.toLowerCase();
     return emo == 'disgust' || emo == 'fear' || emo == 'surprise' || emo == 'happy';
   }
 
-  // 获取默认歌曲列表（保留你原本音乐列表）
+
   List<Map<String, String>> _getSongs(String emotion, [String? mood]) {
     final e = emotion.toLowerCase();
     List<Map<String, String>> songs = [];
@@ -98,7 +98,7 @@ class RecommendMusicPage extends StatelessWidget {
         songs = [
           {'title': 'Positive 1', 'path': 'assets/music/sad/Motivate 1.mp3', 'background': 'assets/images/Victory.jpg'},
           {'title': 'Positive 2', 'path': 'assets/music/sad/Motivate 2.mp3', 'background': 'assets/images/Love.jpg'},
-          {'title': 'Positive 3', 'path': 'assets/music/sad/Motivate 3.mp3', 'background': 'assets/images/Like.png'},
+          {'title': 'Positive 3', 'path': 'assets/music/sad/Motivate 3.mp3', 'background': 'assets/images/Like.jpg'},
           {'title': 'Positive 4', 'path': 'assets/music/sad/Motivate 4.mp3', 'background': 'assets/images/Victory.jpg'},
           {'title': 'Positive 5', 'path': 'assets/music/sad/Motivate 5.mp3', 'background': 'assets/images/Love.jpg'},
           {'title': 'Positive 6', 'path': 'assets/music/sad/Motivate 6.mp3', 'background': 'assets/images/Like.jpg'},
@@ -123,7 +123,7 @@ class RecommendMusicPage extends StatelessWidget {
           {'title': 'Happy 1', 'path': 'assets/music/angry/Happy 1.mp3', 'background': 'assets/images/Bird.jpg'},
           {'title': 'Happy 2', 'path': 'assets/music/angry/Happy 2.mp3', 'background': 'assets/images/Love.jpg'},
           {'title': 'Happy 3', 'path': 'assets/music/angry/Happy 3.mp3', 'background': 'assets/images/Forest.jpg'},
-          {'title': 'Happy 4', 'path': 'assets/music/angry/Happy 4.mp3', 'background': 'assets/images/Bird.png'},
+          {'title': 'Happy 4', 'path': 'assets/music/angry/Happy 4.mp3', 'background': 'assets/images/Bird.jpg'},
           {'title': 'Happy 5', 'path': 'assets/music/angry/Happy 5.mp3', 'background': 'assets/images/Waterfall.jpg'},
           {'title': 'Happy 6', 'path': 'assets/music/angry/Happy 6.mp3', 'background': 'assets/images/Bird.jpg'},
           {'title': 'Happy 7', 'path': 'assets/music/angry/Happy 7.mp3', 'background': 'assets/images/Love.jpg'},
@@ -163,7 +163,7 @@ class RecommendMusicPage extends StatelessWidget {
     return songs;
   }
 
-  // 获取 mood 特定歌曲
+
   List<Map<String, String>> _getSongsForMood(String emotion, String mood) {
     final e = emotion.toLowerCase();
 
@@ -250,7 +250,7 @@ class RecommendMusicPage extends StatelessWidget {
     return _getSongs(emotion);
   }
 
-  // 构建 mood 按钮
+
   Widget _buildMoodButtons(BuildContext context) {
     final e = emotion.toLowerCase();
     if (_noButtonEmotion(e)) return const SizedBox.shrink();
@@ -358,7 +358,7 @@ class _MusicGridPageState extends State<MusicGridPage> with SingleTickerProvider
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 8),
-    )..repeat(); // 旋转动画启动
+    )..repeat(); 
   }
 
   @override
@@ -402,7 +402,7 @@ class _MusicGridPageState extends State<MusicGridPage> with SingleTickerProvider
 
           return GestureDetector(
             onTap: () {
-              _playSong(song['path']!); // 点击直接播放
+              _playSong(song['path']!);
               Navigator.push(
                 context,
                 MaterialPageRoute(

@@ -14,7 +14,7 @@ class EmotionMusicApp extends StatelessWidget {
       title: 'Emotion-Based Music Recommendation',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.deepPurple),
-      home: const EmotionPage(), // 直接打开表情检测页面
+      home: const EmotionPage(), 
     );
   }
 }

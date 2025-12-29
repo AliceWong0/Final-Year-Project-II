@@ -12,9 +12,7 @@ from tensorflow.keras.layers import (
 from tensorflow.keras.utils import to_categorical
 from tensorflow.keras.callbacks import EarlyStopping, ReduceLROnPlateau
 
-# =========================
-# 1️⃣ 基本设置
-# =========================
+
 IMG_SIZE = 48
 BATCH_SIZE = 32
 EPOCHS = 50
@@ -26,9 +24,7 @@ CATEGORIES = [
     "angry", "disgust", "fear", "sad"
 ]
 
-# =========================
-# 2️⃣ 数据载入函数
-# =========================
+
 def load_data(base_dir):
     X, y = [], []
 
@@ -55,18 +51,14 @@ def load_data(base_dir):
 
     return X, y
 
-# =========================
-# 3️⃣ 载入 train / test
-# =========================
+
 X_train, y_train = load_data(TRAIN_DIR)
 X_test, y_test = load_data(TEST_DIR)
 
 y_train_cat = to_categorical(y_train, num_classes=len(CATEGORIES))
 y_test_cat = to_categorical(y_test, num_classes=len(CATEGORIES))
 
-# =========================
-# 4️⃣ 类别权重（非常关键）
-# =========================
+
 class_weights = compute_class_weight(
     class_weight="balanced",
     classes=np.unique(y_train),
@@ -75,9 +67,7 @@ class_weights = compute_class_weight(
 class_weights = dict(enumerate(class_weights))
 print("⚖️ Class weights:", class_weights)
 
-# =========================
-# 5️⃣ CNN 模型
-# =========================
+
 model = Sequential([
     Conv2D(32, (3, 3), activation="relu", input_shape=(48, 48, 1)),
     BatchNormalization(),
@@ -104,9 +94,7 @@ model.compile(
     metrics=["accuracy"]
 )
 
-# =========================
-# 6️⃣ Callbacks（安全版）
-# =========================
+
 callbacks = [
     ReduceLROnPlateau(
         monitor="val_loss",
@@ -117,16 +105,14 @@ callbacks = [
     ),
     EarlyStopping(
         monitor="val_loss",
-        patience=10,          # 很难提前停
+        patience=10,          
         min_delta=0.001,
         restore_best_weights=True,
         verbose=1
     )
 ]
 
-# =========================
-# 7️⃣ 训练
-# =========================
+
 model.fit(
     X_train, y_train_cat,
     validation_data=(X_test, y_test_cat),
@@ -136,8 +122,6 @@ model.fit(
     callbacks=callbacks
 )
 
-# =========================
-# 8️⃣ 保存模型
-# =========================
+
 model.save("emotion_model.h5")
 print("✅ Training finished & model saved")

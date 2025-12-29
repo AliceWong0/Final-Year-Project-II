@@ -51,7 +51,7 @@ class _EmotionPageState extends State<EmotionPage> {
     if (!mounted) return null;
 
     if (emotion != null) {
-      // 检测到人脸，跳转 DetectResultPage
+
       await Navigator.push(
         context,
         MaterialPageRoute(
@@ -63,7 +63,7 @@ class _EmotionPageState extends State<EmotionPage> {
         ),
       );
     } else {
-      // 没检测到人脸，提示用户重新拍照
+
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text("No face detected, please try again."),

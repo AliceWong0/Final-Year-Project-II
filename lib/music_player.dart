@@ -37,7 +37,7 @@ class _MusicPlayerPageState extends State<MusicPlayerPage>
     _rotationController =
         AnimationController(vsync: this, duration: const Duration(seconds: 12));
 
-    /// ✅ 预加载音频，只拿 duration，不播放
+
     _audioPlayer
         .setSource(AssetSource(widget.songPath.replaceFirst('assets/', '')))
         .then((_) async {
@@ -102,14 +102,14 @@ class _MusicPlayerPageState extends State<MusicPlayerPage>
       body: Stack(
         fit: StackFit.expand,
         children: [
-          /// 🎨 背景
+         
           Image.asset(widget.background, fit: BoxFit.cover),
           Container(color: Colors.black.withOpacity(0.45)),
 
           SafeArea(
             child: Column(
               children: [
-                /// 🔙 返回键
+                
                 Align(
                   alignment: Alignment.centerLeft,
                   child: IconButton(
@@ -122,7 +122,7 @@ class _MusicPlayerPageState extends State<MusicPlayerPage>
 
                 const Spacer(),
 
-                /// 💿 黑胶唱片
+               
                 RotationTransition(
                   turns: _rotationController,
                   child: Container(
@@ -140,7 +140,7 @@ class _MusicPlayerPageState extends State<MusicPlayerPage>
 
                 const SizedBox(height: 24),
 
-                /// 🎵 歌曲名（Playpen Sans）
+                
                 Text(
                   widget.songTitle,
                   textAlign: TextAlign.center,
@@ -153,7 +153,7 @@ class _MusicPlayerPageState extends State<MusicPlayerPage>
 
                 const SizedBox(height: 20),
 
-                /// ⏱ 进度条
+                
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24),
                   child: Column(
@@ -165,9 +165,9 @@ class _MusicPlayerPageState extends State<MusicPlayerPage>
                         max: duration.inSeconds.toDouble().clamp(1, double.infinity),
                         onChanged: (v) =>
                         _audioPlayer.seek(Duration(seconds: v.toInt())),
-                         activeColor: Colors.grey.shade300,   // 已播放部分
-                         inactiveColor: Colors.grey.shade700, // 未播放部分
-                         thumbColor: Colors.grey.shade200,    // 拖动点
+                         activeColor: Colors.grey.shade300,   
+                         inactiveColor: Colors.grey.shade700, 
+                         thumbColor: Colors.grey.shade200,    
                          ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -194,7 +194,7 @@ class _MusicPlayerPageState extends State<MusicPlayerPage>
 
                 const SizedBox(height: 24),
 
-                /// 🎛 控制按钮（明确 ±10 秒）
+                
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
